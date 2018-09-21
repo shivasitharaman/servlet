@@ -1,0 +1,35 @@
+importjava.io.IOException;
+importjava.io.PrintWriter;
+importjava.util.Enumeration;
+importjavax.servlet.ServletException;
+importjavax.servlet.annotation.WebServlet;
+importjavax.servlet.http.HttpServlet;
+importjavax.servlet.http.HttpServletRequest;
+importjavax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class RequestHeaderExample
+ */
+@WebServlet("/RequestHeaderExample")
+publicclassRequestHeaderExampleextendsHttpServlet {
+	privatestaticfinallongserialVersionUID = 1L;
+
+	/**
+	 * @seeHttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+
+	publicvoiddoGet(HttpServletRequestrequest, HttpServletResponseresponse)
+	throwsIOException, ServletException
+	    {
+	response.setContentType("text/html");
+	PrintWriterout = response.getWriter();
+	        Enumeration<String>e = request.getHeaderNames();
+	while (e.hasMoreElements()) {
+	            String name = (String)e.nextElement();
+	out.println("<br>");
+	            String value = request.getHeader(name);
+	out.println("<br>");
+	out.println(name + " = " + value);
+	        }
+	    }
+	}
